@@ -77,7 +77,7 @@ while running:
 
         choice = str(input("new account or login:\n"))
 
-        if choice == "new account":
+        if choice[0] == "n":
 
             new_user = str(input("Enter your desired username:\n"))
 
@@ -93,7 +93,7 @@ while running:
 
             session = new_user
 
-        if choice == "login":
+        if choice[0] == "l":
 
             user = input("enter username:\n")
             password = input("enter password:\n")
@@ -106,9 +106,9 @@ while running:
 
         print("\nyou have ",checkUnreads(session)," unread emails.")
 
-        choice = input("logged in.\n")
+        choice = input("unreads, inbox, outbox, send or logout:\n")
 
-        if choice == "send":
+        if choice[0] == "s":
 
             new_to = input("who ya sending to?:\n")
 
@@ -129,13 +129,13 @@ while running:
 
                 print('message deleted.')
 
-        if choice == "logout":
+        if choice[0] == "l":
 
             print("logged out.")
 
             logged_in = False
 
-        if choice == "inbox":
+        if choice[0] == "i":
 
             display = []
 
@@ -145,12 +145,54 @@ while running:
 
                 row += 1
 
-                if email['to'] == session and email['read'] == 0:
+                if email['to'] == session:
 
                     display.append(email)
-                    emails.update_cell(row, 5, 1)
 
             for email in display:
 
-                print("\nmessage from",email["from"],"on",email["time"])
-                print(email["message"])
+                print("\n    message from",email["from"],"on",email["time"])
+                print("   ", email["message"])
+
+        if choice[0] == "o":
+
+            display = []
+
+            row = 1
+
+            for email in email_list:
+
+                row += 1
+
+                if email['from'] == session:
+
+                    display.append(email)
+
+            for email in display:
+
+                print("\n    message to",email["to"],"on",email["time"])
+                print("   ", email["message"])
+
+        if choice[0] == "u":
+
+            if checkUnreads(session) == 0:
+                print("no new messages.")
+
+            else:
+                display = []
+
+                row = 1
+
+                for email in email_list:
+
+                    row += 1
+
+                    if email['to'] == session and email['read'] == 0:
+
+                        display.append(email)
+                        emails.update_cell(row, 5, 1)
+
+                for email in display:
+
+                    print("\n    message from",email["from"],"on",email["time"])
+                    print("   ", email["message"])
