@@ -75,7 +75,7 @@ while running:
 
     if not logged_in:
 
-        choice = str(input("new account or login:\n"))
+        choice = str(input("welcome to MailDart.\nnew account or login:\n"))
 
         if choice[0] == "n":
 
@@ -151,8 +151,8 @@ while running:
 
             for email in display:
 
-                print("\n    message from",email["from"],"on",email["time"])
-                print("   ", email["message"])
+                print("\n\tmessage from",email["from"],"on",email["time"])
+                print("\t",email["message"])
 
         if choice[0] == "o":
 
@@ -170,8 +170,8 @@ while running:
 
             for email in display:
 
-                print("\n    message to",email["to"],"on",email["time"])
-                print("   ", email["message"])
+                print("\n\tmessage to",email["to"],"on",email["time"])
+                print("\t",email["message"])
 
         if choice[0] == "u":
 
@@ -194,5 +194,5 @@ while running:
 
                 for email in display:
 
-                    print("\n    message from",email["from"],"on",email["time"])
-                    print("   ", email["message"])
+                    print("\n\tmessage from",email["from"],"on",email["time"])
+                    print("\t",email["message"])
