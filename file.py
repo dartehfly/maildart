@@ -67,7 +67,6 @@ def checkExisting(user):
     else:
         return False
 
-
 while running:
 
     user_data = users.get_all_records()
@@ -75,7 +74,7 @@ while running:
 
     if not logged_in:
 
-        choice = str(input("welcome to MailDart.\nnew account or login:\n"))
+        choice = str(input("welcome to MailDart.\nnew account, login or exit:\n"))
 
         if choice[0] == "n":
 
@@ -102,11 +101,15 @@ while running:
 
             session = user
 
+        if choice[0] == "e":
+
+            running = False
+
     if logged_in:
 
         print("\nyou have ",checkUnreads(session)," unread emails.")
 
-        choice = input("unreads, inbox, outbox, send or logout:\n")
+        choice = input("unreads, inbox, outbox, send, force update or logout:\n")
 
         if choice[0] == "s":
 
@@ -131,7 +134,7 @@ while running:
 
         if choice[0] == "l":
 
-            print("logged out.")
+            print("\nlogged out.\n")
 
             logged_in = False
 
